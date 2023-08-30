@@ -1,0 +1,101 @@
+.registration-container {
+    display: flex;
+    height: 93vh;
+    margin-top: 3vh;
+    flex-direction: column;
+}
+.registration-elements{
+    display: flex; 
+    flex-grow: 1;
+    
+}
+.registration-form {
+    flex-grow: 1;
+    background-color: rgba(67, 102, 36, 0.6);
+    border-radius: 20px;
+    color:black;
+}
+.registration-form:hover {
+    background-color: rgba(67, 102, 36, 0.9);
+    color:white;
+}
+.registration-form-title{
+    text-align: center;
+    font-size: 50px;
+    padding-bottom: 10px;
+    color:inherit;
+    border-bottom: solid black 1px;
+}
+
+.registration-notification {
+    width: 30%;
+    margin-left: 1vw;
+    border-radius: 20px;
+
+    background-color: rgba(67, 102, 36, 0.6);
+}
+.registration-notification:hover {
+    background-color: rgba(67, 102, 36, 0.9);
+    color:white;
+}
+
+.registration-form-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.registration-form-elements{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.registration-form-element{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+
+}
+.registration-form-element label{
+    color: inherit;
+    font-size: 35px;
+}
+
+.registration-form-element input,
+.registration-form-element select
+{
+    color: inherit;
+    font-size: 35px;
+    border: none;
+    outline: none;
+    background-color: rgba(99, 148, 56, 0.808);
+    border-radius: 5px;
+    padding: 3px;
+
+}
+.registration-form-element input:hover,
+.registration-form-element input:focus
+{
+    background-color: rgba(86, 129, 48, 0.808);
+}
+
+.registration-form-elements button,
+.registration-form-elements a
+{
+    border: none;
+    color: inherit;
+    outline: none;
+    background-color: rgba(99, 148, 56, 0.808);
+    font-size: 35px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 15px;
+    text-decoration: none;
+}
+.registration-form-elements button:hover,
+.registration-form-elements a:hover
+{
+    background-color: rgba(86, 129, 48, 0.808);
+
+}

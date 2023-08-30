@@ -1,0 +1,87 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+	<div class="registration-container">
+		<div class="registration-elements">
+			<div class="registration-form">
+				<div class="registration-form-title">
+					Register
+				</div>
+				{{ form_start(registrationForm) }}
+				<div class="registration-form-container">
+					<div class="registration-form-elements">
+						<div class="registration-form-element">
+							{{form_label(registrationForm.firstName)}}
+							{{ form_widget(registrationForm.firstName) }}
+						</div>
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.lastName)}}
+							{{ form_widget(registrationForm.lastName) }}
+						</div>
+					</div>
+					<div class="registration-form-elements">
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.email)}}
+							{{ form_widget(registrationForm.email) }}
+
+						</div>
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.phone)}}
+							{{ form_widget(registrationForm.phone, {'attr': {'class': 'txtPhone'}}) }}
+						</div>
+					</div>
+					<div class="registration-form-elements">
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.password.first)}}
+							{{ form_widget(registrationForm.password.first) }}
+						</div>
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.password.second)}}
+							{{ form_widget(registrationForm.password.second) }}
+						</div>
+					</div>
+					<div class="registration-form-elements">
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.address)}}
+							{{ form_widget(registrationForm.address) }}
+						</div>
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.city)}}
+							{{ form_widget(registrationForm.city) }}
+						</div>
+					</div>
+					<div class="registration-form-elements">
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.postalcode)}}
+							{{ form_widget(registrationForm.postalcode, {'attr': {'class': 'txtxPostalCode'}}) }}
+						</div>
+						<div class="registration-form-element">
+                        {{form_label(registrationForm.province)}}
+							{{ form_widget(registrationForm.province) }}
+						</div>
+					</div>
+
+
+					<div class="registration-form-elements">
+						{{ form_row(registrationForm.create) }}
+					</div>
+
+				</div>
+				{{ form_end(registrationForm) }}
+			</div>
+            {% if errors.count >0 %}
+			<div class="registration-notification">
+				<div class="registration-form-title">
+					Errors
+				</div>
+				{% for err in errors %}
+					<div class="cart-notification cart-notification-error">
+						<p>{{err.message}}</p>
+					</div>
+				{% endfor %}
+			</div>
+            {% endif %}
+		</div>
+
+	</div>
+{% endblock %}

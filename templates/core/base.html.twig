@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Bakery FDO
+			{% endblock %}
+		</title>
+		<link href="{{ asset('/css/container-card.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('/css/modal.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('/css/navbar.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('/css/cart.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('/css/registration.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('/css/account.css') }}" rel="stylesheet" type="text/css"/>
+		<link
+		href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css"/>
+
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="{{asset('/scripts/navbar.filters.js')}}"></script>
+		<script src="{{asset('/scripts/product.js')}}"></script>
+		<script src="{{asset('/scripts/product.modal.js')}}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.3/axios.min.js" integrity="sha512-wS6VWtjvRcylhyoArkahZUkzZFeKB7ch/MHukprGSh1XIidNvHG1rxPhyFnL73M0FC1YXPIXLRDAoOyRJNni/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+		<script defer src="{{ asset('scripts/registration.js')}}"></script>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body style="background-image:url('{{ asset('/images/Background.jpg') }}')">
+		{% include 'core/navbar.html.twig' %}
+		{% include 'core/footer.html.twig' %}
+
+
+		<h1 class="title">Bakery Farhin Danf Oufounee
+			<span style="color: red;">-Site Pédagogique-</span>
+		</h1>
+
+		{% block body %}{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,79 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+	<div class="cart-main-container">
+		<div class="cart-title">Review order</div>
+		<div class="cart-container">
+			<div class="cart-table-container">
+				{% for notification in app.flashes('cart') %}
+					<div class="cart-notification {{notification.color}}">
+						<p>{{notification.content}}</p>
+						<a class="cart-notification-btn" href="{{path('app_cart')}}">Remove notification</a>
+
+					</div>
+				{% endfor %}
+				{% if cart.purchases|length() > 0 %}
+					<form action="{{ path('purchase_update') }}" method="POST">
+						<div class="cart-product cart-product-main">
+							<div class="cart-product-image"></div>
+							<div class="cart-product-name">Name</div>
+							<div class="cart-product-bprice">Base Price</div>
+							<div class="cart-product-quantity">Quantity</div>
+							<div class="cart-product-tprice">Total Price</div>
+
+						</div>
+
+						{% for key,purchase in cart.purchases %}
+							{% set product = purchase.product %}
+							<div class="cart-product">
+								<div class="cart-product-image">
+									<img src="{{ asset_if(product.imagePath1, 'images/Unavailable.png') }}" alt="card image">
+								</div>
+								<div class="cart-product-name">{{product.name}}</div>
+								<div class="cart-product-bprice">${{product.Price | number_format(2,'.')}}</div>
+								<div class="cart-product-quantity">
+									{{ purchase.quantity }}
+								</div>
+								<div class="cart-product-tprice">${{(product.Price*purchase.quantity) | number_format(2,'.')}}</div>
+
+							</div>
+						{% endfor %}
+					</form>
+
+				</div>
+				<div class="cart-summary">
+					<div class="cart-summary-title">Summary</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">Subtotal</div>
+						<div class="cart-summary-item">${{cart.subTotalPrice| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">TPS</div>
+						<div class="cart-summary-item">${{cart.tps| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">TVQ</div>
+						<div class="cart-summary-item">${{cart.tvq| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">Shipping</div>
+						<div class="cart-summary-item">${{cart.shippingCost| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">Total</div>
+						<div class="cart-summary-item">${{cart.TotalPrice| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-button">
+						<a href=" {{ path('stripe_checkout')}}" class="cart-summary-buy">
+							<div class="cart-summary-buy-item">Order now!</div>
+						</a>
+					</div>
+				{% else %}
+					<div class="cart-empty">
+						Your cart is empty 😢
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

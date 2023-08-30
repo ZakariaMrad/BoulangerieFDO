@@ -1,0 +1,47 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+	<div class="registration-container">
+		<div class="registration-elements">
+			<div class="registration-form">
+				<div class="registration-form-title">
+					Login
+				</div>
+				<form action="{{ path('app_login') }}" method="post">
+					<div class="registration-form-container">
+						<div class="registration-form-elements">
+							<div class="registration-form-element">
+								<label class="" for="username">Email</label>
+								<input class="" type="text" id="username" name="_username" value="{{ last_email }}">
+							</div>
+							<div class="registration-form-element">
+								<label class="" for="password">Password</label>
+								<input class="" type="password" id="password" name="_password">
+							</div>
+							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+						</div>
+						<div class="registration-form-elements">
+							<button type="submit" class="">Connexion</button>
+						</div>
+						<div class="registration-form-elements">
+							<a href="{{path('app_register')}}">Register now!</a>
+						</div>
+
+					</div>
+				</form>
+			</div>
+			<div class="registration-notification">
+				<div class="registration-form-title">
+					Notifications
+				</div>
+				{% for notification in app.flashes('login') %}
+					<div class="cart-notification {{notification.color}}">
+						<p>{{notification.content}}</p>
+						<a class="cart-notification-btn" href="{{path('app_login')}}">Remove notification</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

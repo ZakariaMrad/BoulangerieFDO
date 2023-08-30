@@ -1,0 +1,139 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+	<div class="buttons">
+		<a class="button button-orders" href="{{path('account_orders')}}">Orders</a>
+		<a class="button button-disconnect" href="{{path('app_logout')}}">Disconnect</a>
+
+	</div>
+	<div class="account-container">
+		<div class="account-tab">
+			<div class="account-tab-title">Change your info</div>
+			<div class="account-form-container">
+				<div class="account-form-elements">
+					<div class="account-form-form">
+						{{ form_start(modifyUserForm) }}
+						<div class="account-form-container">
+							<div class="account-form-elements">
+								<div class="account-form-element">
+									{{form_label(modifyUserForm.firstName)}}
+									{{ form_widget(modifyUserForm.firstName) }}
+								</div>
+								<div class="account-form-element">
+									{{form_label(modifyUserForm.lastName)}}
+									{{ form_widget(modifyUserForm.lastName) }}
+								</div>
+							</div>
+							<div class="account-form-elements">
+								<div class="account-form-element">
+									<label>Email</label>
+									<input type="text" value="{{user.email}}">
+								</div>
+								<div class="account-form-element">
+									{{form_label(modifyUserForm.phone)}}
+									{{ form_widget(modifyUserForm.phone, {'attr': {'class': 'txtPhone'}}) }}
+								</div>
+							</div>
+
+							<div class="account-form-elements">
+								<div class="account-form-element">
+									{{form_label(modifyUserForm.address)}}
+									{{ form_widget(modifyUserForm.address) }}
+								</div>
+								<div class="account-form-element">
+									{{form_label(modifyUserForm.city)}}
+									{{ form_widget(modifyUserForm.city) }}
+								</div>
+							</div>
+							<div class="account-form-elements">
+								<div class="account-form-element">
+									{{form_label(modifyUserForm.postalcode)}}
+									{{ form_widget(modifyUserForm.postalcode, {'attr': {'class': 'txtxPostalCode'}}) }}
+								</div>
+								<div class="account-form-element">
+									{{form_label(modifyUserForm.province)}}
+									{{ form_widget(modifyUserForm.province) }}
+								</div>
+							</div>
+
+
+							<div class="account-form-elements">
+								{{ form_row(modifyUserForm.create) }}
+							</div>
+
+						</div>
+						{{ form_end(modifyUserForm) }}
+					</div>
+					{% if errorsUsers.count >0 %}
+						<div class="account-notification">
+							<div class="account-form-title">
+								Errors
+							</div>
+							{% for err in errorsUsers %}
+								<div class="cart-notification cart-notification-error">
+									<p>{{err.message}}</p>
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+
+			</div>
+		</div>
+		<div class="account-tab">
+			<div class="account-tab-title">Change your password</div>
+			<div class="account-form-container">
+				<div class="account-form-elements">
+					<div class="account-form-form">
+						{{ form_start(modifyPasswordForm) }}
+						<div class="account-form-container">
+							<div class="account-form-elements">
+								<div class="account-form-element">
+									{{form_label(modifyPasswordForm.old_password)}}
+									{{ form_widget(modifyPasswordForm.old_password) }}
+								</div>
+							</div>
+
+							<div class="account-form-elements">
+								<div class="account-form-element">
+									{{form_label(modifyPasswordForm.new_password.first)}}
+									{{ form_widget(modifyPasswordForm.new_password.first) }}
+								</div>
+								<div class="account-form-element">
+									{{form_label(modifyPasswordForm.new_password.second)}}
+									{{ form_widget(modifyPasswordForm.new_password.second) }}
+								</div>
+							</div>
+							<div class="account-form-elements">
+								{{ form_row(modifyPasswordForm.create) }}
+							</div>
+						</div>
+
+						{{ form_end(modifyPasswordForm) }}
+					</div>
+
+
+
+					{% for notification in app.flashes('password') %}
+						<div class="cart-notification {{notification.color}}">
+							<p>{{notification.content}}</p>
+						</div>
+					{% endfor %}
+					{% if errorsPassword.count >0 %}
+						<div class="account-notification">
+							<div class="account-form-title">
+								Errors
+							</div>
+							{% for err in errorsPassword %}
+								<div class="cart-notification cart-notification-error">
+									<p>{{err.content}}</p>
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

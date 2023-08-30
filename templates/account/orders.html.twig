@@ -1,0 +1,95 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+	<div class="buttons">
+		<a class="button button-orders" href="{{path('account_orders')}}">Orders</a>
+		<a class="button button-disconnect" href="{{path('app_logout')}}">Disconnect</a>
+	</div>
+	<div class="account-container">
+		<div class="account-tab">
+			<div class="account-tab-title">Current Orders</div>
+			<div class="account-form-container">
+				<div class="account-order-elements">
+					<div class="order-element">
+						<div class="order-row order-id">
+							Order #
+						</div>
+						<div class="order-row order-date">
+							Order date
+						</div>
+						<div class="order-row order-total">
+							Total price
+						</div>
+						<div class="order-row order-status">
+							Status
+						</div>
+						<div class="order-row order-detail"></div>
+					</div>
+					{% for order in currentOrders %}
+						<div class="order-element">
+							<div class="order-row order-id">
+								{{order.idOrder}}
+							</div>
+							<div class="order-row order-date">
+								{{order.dateOrder | date()}}
+							</div>
+							<div class="order-row order-total">
+								${{order.totalPrice| number_format(2,'.')}}
+							</div>
+							<div class="order-row order-status">
+								{{order.state}}
+							</div>
+							<div class="order-row order-detail">
+								<a class="order-detail-button" href="{{ path('account_order', { idOrder: order.idOrder }) }}">Details
+								</a>
+								
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+			</div>
+		</div>
+		<div class="account-tab">
+			<div class="account-tab-title">Past Orders</div>
+			<div class="account-form-container">
+				<div class="account-order-elements">
+					<div class="order-element">
+						<div class="order-row order-id">
+							Order #
+						</div>
+						<div class="order-row order-date">
+							Order date
+						</div>
+						<div class="order-row order-total">
+							Total price
+						</div>
+						<div class="order-row order-status">
+							Status
+						</div>
+						<div class="order-row order-detail"></div>
+					</div>
+					{% for order in pastOrders %}
+						<div class="order-element">
+							<div class="order-row order-id">
+								{{order.idOrder}}
+							</div>
+							<div class="order-row order-date">
+								{{order.dateOrder | date()}}
+							</div>
+							<div class="order-row order-total">
+								{{order.totalPrice| number_format(2,'.')}}
+							</div>
+							<div class="order-row order-status">
+								{{order.state}}
+							</div>
+							<div class="order-row order-detail">
+								<a class="order-detail-button" href="#">Details
+								</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endblock %}

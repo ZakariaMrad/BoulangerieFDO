@@ -1,0 +1,149 @@
+.navbar {
+    background-color: rgb(34, 48, 23);
+    color: white;
+    position: fixed;
+    left: -200px;
+    top: 0;
+    bottom: 0;
+    width: 180px;
+    height: 100%;
+    transition: left 0.5s ease;
+    padding: 20px 20px 60px 20px;
+    box-shadow: 2px 0px 4px rgb(34, 48, 23);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    opacity: 0.3;
+  }
+  .navbar:focus-within,
+  .navbar:hover {
+    left: 0;
+    opacity: 0.9;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar button {
+    border: 2px solid transparent;
+    outline: none;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .navbar img {
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .navbar .bottom-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .bottom-buttons input {
+    background-color: rgb(44, 70, 21);
+    border: 2px solid transparent;
+    outline: none;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .bottom-buttons a {
+    text-align: center;
+    background-color: rgb(44, 70, 21);
+    border: 2px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .bottom-buttons input:hover {
+    background-color: rgb(73, 112, 39);
+  }
+  
+  .bottom-buttons a:hover {
+    background-color: rgb(73, 112, 39);
+  }
+  
+  .filters {
+    height: 100vh;
+    direction: rtl;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #7d7b7b;
+    margin-left: -5px;
+    overflow: auto;
+    position: relative;
+    width: calc(100% + 5px);
+    justify-content: start;
+  }
+  
+  .filters:hover::-webkit-scrollbar-thumb {
+    background-color: #7d7b7b;
+  }
+  
+  .checkbox-element {
+    direction: ltr;
+    background-color: rgb(44, 70, 21);
+    border: 2px solid transparent;
+    outline: none;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    text-decoration: none;
+    color:white;
+  }
+  
+  .checkbox-element:hover {
+    background-color: rgb(73, 112, 39);
+  }
+  
+  .checkbox-element:active {
+    background-color: rgb(73, 112, 39);
+  }
+  
+  .checkbox-element>.checkbox-selector {
+    height: 20px;
+    width: 20px;
+    margin-right: 15px;
+    background-color: rgb(44, 70, 21);
+  }
+  
+  .checkbox-element>a {
+    text-decoration: none;
+  }
+  .search_bar{
+    color: white;
+  }
+  .checkbox-label{
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }

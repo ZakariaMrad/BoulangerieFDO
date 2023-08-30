@@ -1,0 +1,63 @@
+<div class="navbar">
+
+	<h2>Filter</h2>
+	<div class="filters">
+		{% for category in categories %}
+
+			{% if selectedCategories | length == 0 %}
+				<a class="checkbox-element" href="{{ path('app_catalog',{category : category.idCategory}) }}">
+					<input type="checkbox" class="checkbox-selector"/>
+
+				{% else %}
+					{% if category.idCategory in selectedCategories %}
+						<a class="checkbox-element" href="{{ path('app_catalog',{category : selectedCategories|filter((v, k) => v !=category.idCategory)|join(',') }) }}">
+							<input type="checkbox" checked class="checkbox-selector"/>
+
+						{% else %}
+							<a class="checkbox-element" href="{{ path('app_catalog',{category : selectedCategories|merge([category.idCategory])|join(',') }) }}">
+								<input type="checkbox" class="checkbox-selector"/>
+
+							{% endif %}
+						{% endif %}
+						<div>
+							{{category.name}}
+							({{category.products|length}})
+						</div>
+					</a>
+				{% endfor %}
+			</div>
+
+			<div class="bottom-buttons">
+				<a href="{{path('app_catalog')}}">Reset Filters</a>
+				<form method="POST" action="{{ path('app_catalog', {category: selectedCategories|join(',')}) }}">
+					{% if searchField == ''%}
+						<input type="search" name="search_field" placeholder="Search" value="" onfocus="this.value=''" class="search_bar">
+					{% else %}
+						<input type="search" name="search_field" placeholder="Search" value="{{searchField}}" onfocus="this.value=''" class="search_bar">
+					{% endif %}
+				</form>
+				{% if app.request.pathinfo != path('app_account')%}
+					{% if is_granted('ROLE_USER') %}
+						<a href="{{ path('app_account')}}">
+							Account
+						</a>
+					{% else %}
+						<a href="{{ path('app_login')}}">
+							Login
+						</a>
+					{% endif %}
+				{% endif %}
+				{% if app.request.pathinfo != path('app_contact')%}
+					<a href="{{path('app_contact')}}">Contact Us</a>
+				{% endif %}
+
+
+				{% if app.request.pathinfo != path('app_catalog')%}
+					<a href="{{path('app_catalog')}}">Products</a>
+				{% endif %}
+
+				{% if app.request.pathinfo != path('app_cart')%}
+					<a href="{{path('app_cart')}}">Cart</a>
+				{% endif %}
+			</div>
+		</div>

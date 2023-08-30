@@ -1,0 +1,129 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+	<div class="buttons">
+		<a class="button button-orders" href="{{path('account_orders')}}">Orders</a>
+		<a class="button button-disconnect" href="{{path('app_logout')}}">Disconnect</a>
+	</div>
+	<div class="account-container">
+		<div class="account-tab-order">
+			<div class="account-tab-title">Order #
+				{{order.idOrder}}</div>
+			<div class="account-order-container">
+				<div class="account-aorder-elements">
+					<div class="order-element-title">
+						Order information
+					</div>
+					<div class="aorder-elements">
+						<div class="aorder-element">
+							<div>
+								<div>Number of items</div>
+								<div>{{order.purchases | length()}}</div>
+							</div>
+							<div>
+								<div>Order date</div>
+								<div>{{order.dateOrder | date()}}</div>
+							</div>
+
+						</div>
+						<div class="aorder-element">
+							<div>
+								<div>Order status</div>
+								<div>{{order.state}}</div>
+							</div>
+							<div>
+								<div>Delievry Date</div>
+								<div>
+									{% if order.dateDelivery is null %}
+										Pending...
+									{% else %}
+										{{order.dateDelivery | date()}}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="aorder-elements">
+						<div class="aorder-element">
+							<div>
+								<div>Subtotal</div>
+								<div>${{order.subTotalPrice}}</div>
+							</div>
+							<div>
+								<div>Discount</div>
+								<div>$0.00</div>
+							</div>
+
+						</div>
+						<div class="aorder-element">
+							<div>
+								<div>Shipping fee</div>
+								<div>${{order.shippingCost}}</div>
+							</div>
+							<div>
+								<div>Total (with taxes)</div>
+								<div>${{order.totalPrice}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="aorder-elements">
+						<div class="aorder-element">
+							<div>
+								<div>Name</div>
+								<div>{{order.user.firstName}} {{order.user.lastName}}</div>
+							</div>
+							<div>
+								<div>Address</div>
+								<div>{{order.user.address}}</div>
+							</div>
+
+						</div>
+						<div class="aorder-element">
+							<div>
+								<div>City</div>
+								<div>{{order.user.city}}, {{order.user.province}}</div>
+							</div>
+							<div>
+								<div>Postal Code</div>
+								<div>{{order.user.postalCode}}</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="account-aorder-elements">
+					<div class="order-element-title">
+						Products
+					</div>
+					<div class="order-element-products">
+						<div class="cart-product cart-product-main">
+							<div class="cart-product-image"></div>
+							<div class="cart-product-name">Name</div>
+							<div class="cart-product-bprice">Base Price</div>
+							<div class="cart-product-quantity">Quantity</div>
+							<div class="cart-product-tprice">Total Price</div>
+
+						</div>
+
+						{% for key,purchase in order.purchases %}
+							{% set product = purchase.product %}
+							<div class="cart-product">
+								<div class="cart-product-image">
+									<img src="{{ asset_if(product.imagePath1, 'images/Unavailable.png') }}" alt="card image">
+								</div>
+								<div class="cart-product-name">{{product.name}}</div>
+								<div class="cart-product-bprice">${{product.Price | number_format(2,'.')}}</div>
+								<div class="cart-product-quantity">
+									{{ purchase.quantity }}
+								</div>
+								<div class="cart-product-tprice">${{(product.Price*purchase.quantity) | number_format(2,'.')}}</div>
+
+							</div>
+						{% endfor %}
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}

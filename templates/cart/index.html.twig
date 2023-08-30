@@ -1,0 +1,81 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+	<div class="cart-main-container">
+		<div class="cart-title">Cart</div>
+		<div class="cart-container">
+			<div class="cart-table-container">
+				{% for notification in app.flashes('cart') %}
+					<div class="cart-notification {{notification.color}}">
+						<p>{{notification.content}}</p>
+						<a class="cart-notification-btn" href="{{path('app_cart')}}">Remove notification</a>
+
+					</div>
+				{% endfor %}
+				{% if cart.purchases|length() > 0 %}
+					<form action="{{ path('purchase_update') }}" method="POST">
+						<div class="cart-product cart-product-main">
+							<div class="cart-product-image"></div>
+							<div class="cart-product-name">Name</div>
+							<div class="cart-product-bprice">Base Price</div>
+							<div class="cart-product-quantity">Quantity</div>
+							<div class="cart-product-tprice">Total Price</div>
+							<div class="cart-product-actions">
+								<button name="action" value="update" type="submit" class="cart-btn cart-btn-update">Update</button>
+								<button name="action" value="remove" type="submit" class="cart-btn cart-btn-remove">Empty cart</button>
+							</div>
+						</div>
+
+						{% for key,purchase in cart.purchases %}
+							{% set product = purchase.product %}
+							<div class="cart-product">
+								<div class="cart-product-image">
+									<img src="{{ asset_if(product.imagePath1, 'images/Unavailable.png') }}" alt="card image">
+								</div>
+								<div class="cart-product-name">{{product.name}}</div>
+								<div class="cart-product-bprice">${{product.Price | number_format(2,'.')}}</div>
+								<div class="cart-product-quantity">
+									<input name=" {{ 'inpQuantity[' ~ key ~ ']' }} " type="number" value="{{ purchase.quantity }}" id="input-{{product.idProduct}}" min="1" max="99"/>
+								</div>
+								<div class="cart-product-tprice">${{(product.Price*purchase.quantity) | number_format(2,'.')}}</div>
+								<div class="cart-product-actions">
+									<a href="{{ path('purchase_remove', { idPurchase: key }) }}" class="cart-btn cart-btn-remove">Remove</a>
+								</div>
+							</div>
+						{% endfor %}
+					</form>
+
+				</div>
+				<div class="cart-summary">
+					<div class="cart-summary-title">Summary</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">Subtotal</div>
+						<div class="cart-summary-item">${{cart.subTotalPrice| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">TPS</div>
+						<div class="cart-summary-item">${{cart.tps| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">TVQ</div>
+						<div class="cart-summary-item">${{cart.tvq| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-row">
+						<div class="cart-summary-item">Shipping Cost</div>
+						<div class="cart-summary-item">${{cart.shippingCost| number_format(2,'.')}}</div>
+					</div>
+					<div class="cart-summary-button">
+						<a href=" {{ path('cart_review')}}" class="cart-summary-buy">
+							<div class="cart-summary-buy-item">Total</div>
+							<div class="cart-summary-buy-item">${{cart.TotalPrice| number_format(2,'.')}}</div>
+						</a>
+					</div>
+				{% else %}
+					<div class="cart-empty">
+						Your cart is empty 😢
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,195 @@
+.container {
+  top: 4vh;
+  left: 0;
+  width: 98vw;
+  height: 97vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  position: fixed;
+  padding: 0vw 3vh 0vw 3vh;
+  overflow-y: auto;
+  justify-content: space-between;
+}
+
+.container:hover::-webkit-scrollbar-thumb {
+  background-color: #7d7b7b;
+}
+
+.card {
+  position: relative;
+  height: min(30vw, 40vh);
+  width: min(30vw, 40vh);
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 1vw 1vh;
+  background-color: white;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card .card-title {
+  color: rgb(255, 255, 255);
+  background-color: rgba(34, 48, 23, 0.666);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.card .card-title .card-modal {
+  transition: all 0.3s ease-in-out;
+  display: none;
+  position: absolute;
+  right: 1vw;
+  top: 50%;
+  color: black !important;
+  transform: translateY(-50%);
+  color: inherit;
+  text-decoration: none;
+  width: min(3vh, 3vw);
+  height: min(3vh, 3vw);
+  border-radius: 5vw;
+  border: 3px solid transparent;
+  vertical-align: middle;
+  text-align: center;
+  background-image: url("../images/OpenPage.png");
+  background-size: cover;
+  text-decoration: none;
+}
+
+.card .card-title .card-modal:hover {
+  border: 3px solid transparent;
+  background-color: #b9b6b6;
+}
+
+.card .card-title .card-modal:active {
+  border: 3px solid #8d8b8b;
+  background-color: #b9b6b6;
+}
+
+.card:hover .card-title {
+  bottom: calc(100% - 50px);
+  background-color: transparent;
+  color: black;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover .card-title .card-modal {
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover .card-info {
+  bottom: 0px;
+}
+
+.card:hover img {
+  opacity: 0.6;
+  transition: all 0.5s ease-in-out;
+}
+
+.card .card-info {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  color: white;
+  background-color: rgba(34, 48, 23, 0.666);
+
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.card .card-info p {
+  margin-bottom: 10px;
+}
+
+.card .card-when-available {
+  display: none;
+  text-align: center;
+}
+
+.card .card-info button {
+  padding: 10px 20px;
+  background: rgb(18, 95, 18);
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card .card-info button:active {
+  border: 2px solid rgb(29, 144, 29);
+}
+
+.card-btn-remove {
+  background: rgb(167, 31, 31) !important;
+}
+
+.card-btn-remove:active {
+  border: 2px solid rgb(192, 40, 40) !important;
+}
+
+.card-price {
+  font-style: italic;
+  font-size: 15px;
+}
+
+.card-unavailable {
+  background-image: url("../images/icons8-annuler-2-512.png");
+  background-size: cover;
+}
+
+.card-unavailable > img {
+  opacity: 0.3;
+}
+
+.card-unavailable .card-buy {
+  display: none;
+}
+
+.card-unavailable .card-when-available {
+  display: block;
+}
+
+.card-unavailable:hover img {
+  opacity: 0.2;
+  transition: all 0.4s ease-in-out;
+}
+
+.card-unavailable .card-info {
+  background-color: #2b2a2a79;
+}
+
+.card-unavailable .card-title {
+  background-color: #2b2a2a79;
+}
+
+.card-info > p {
+  text-align: justify;
+}
+
+.card-info > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.card-buy {
+  display: flex !important;
+  justify-content: space-around !important;
+}
+.production-price{
+    text-align: center;
+}

@@ -1,0 +1,109 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<h1 class="modal-title">{{product.name}}</h1>
+		<button class="close">&times;</button>
+	</div>
+	<div class="modal-body">
+		<div class="modal-row">
+			<div class="modal-col">
+				<h2 class="modal-col-title">Comments</h2>
+				<div class="modal-col-content">
+					{% for comment in product.comments %}
+						<div class="comment">
+							<div class="comment-col comment-col-i">
+								{{comment.username}}
+
+								<div class="comment-dt">
+									{% set currentTime = "now"|date('U') %}
+									{% set datetimeToBeTransformed = comment.date|date('U') %}
+
+									{% set timeDifference = currentTime - datetimeToBeTransformed %}
+
+									{% set timeAgo %}
+									{% if timeDifference < 60 %}
+										{{timeDifference}}
+										seconds ago
+									{% elseif timeDifference < 3600 %}
+										{{ timeDifference|number_format(0) }}
+										minutes ago
+									{% elseif timeDifference < 86400 %}
+										{{ timeDifference|number_format(0, '', '')|slice(0, -3) }}
+										hours ago
+									{% else %}
+										{{ timeDifference|number_format(0, '', '')|slice(0, -6) }}
+										days ago
+									{% endif %}
+									{% endset %}
+
+									{{ timeAgo }}</div>
+							</div>
+							<div class="comment-col comment-col-1">
+								{{comment.content}}
+								<div class="comment-col-hover">
+									<div class="comment-col-hover-reactions">
+										<button>&#x1F44D;</button>
+									</div>
+									<div class="comment-col-hover-reactions" id="score{{comment.idComment}}">{{comment.score}}</div>
+									<div class="comment-col-hover-reactions">
+										<button onclick="$('#score{{comment.idComment}}').html($('#score{{comment.idComment}}').html()-1);">&#x1F44E;</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="modal-col">
+				<div class="modal-col-content modal-col-content-2-3">
+					<div class="carousel">
+						<div class="carousel-images" id="carousel-images" data-imgd="0">
+							<img src="{{ asset_if(product.imagePath1, 'images/Unavailable.png') }}" alt="card image" class="img-center">
+							<img src="{{ asset_if(product.imagePath2, 'images/Unavailable.png') }}" alt="card image" class="img-right">
+							<img src="{{ asset_if(product.imagePath3, 'images/Unavailable.png') }}" alt="card image" class="img-left">
+						</div>
+						<button class="prev-button" id="prev-button">&lt;</button>
+						<button class="next-button" id="next-button">&gt;</button>
+					</div>
+				</div>
+				<div class="modal-col-content modal-col-content-1-3">
+					<div class="modal-description">
+						<p>{{product.description}}</p>
+					</div>
+					<div class="modal-infos">
+						<p>${{product.price | number_format(2)}}
+							for 3</p>
+						<p>{{product.quantityInStock}}</p>
+						<p>{{product.category.name}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-col" style="text-align: right;">
+				<h2 class="modal-col-title">Production</h2>
+				<div class="modal-col-content">
+					{% for production in product.productions
+					|sort((a, b) => a.productTimeStamp <=> b.productTimeStamp) %}
+						<div class="production">
+							<div class="production-col production-col-1">
+								{{production.productNumber}}
+								coming in
+								{% if production.productTimeStamp == 0 %}
+									less than an hour
+								{% elseif production.productTimeStamp == 1 %}
+									1 hour
+								{% else %}
+									{{production.productTimeStamp}}
+									hours
+								{% endif %}
+							</div>
+							<div class="production-col production-col-hover">
+								Made by our chef
+								{{production.productChef}}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{{asset('/scripts/test.js')}}"></script>
+</div>

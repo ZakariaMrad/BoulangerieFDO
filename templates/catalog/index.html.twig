@@ -1,0 +1,49 @@
+{% extends 'core/base.html.twig' %}
+
+
+{% block body %}
+	<div class="container">
+		{% if products | length == 0 %}
+			<div class="empty-filters">Nothing to show 😢</div>
+		{% endif %}
+		{% for product in products %}
+			<div class="card {{product.quantityInStock > 0 ? '': 'card-unavailable'}}">
+				<img src="{{ asset_if(product.imagePath1, 'images/Unavailable.png') }}" alt="card image">
+					<a class="card-modal card-title" href="{{ path('app_catalog_modal', {idProduct: product.idProduct})}}">
+						{{product.name}}
+					</a>
+				<div class="card-info">
+					<p>{{product.description|split('.')[0]}}</p>
+					<div class="card-buy">
+						<form class="production-price" method="POST" action="{{ path('purchase_add',{idProduct: product.idProduct}) }}">
+								<div class="price">
+									<label class="card-price">${{product.Price | number_format(2,'.')}}</label>
+									<br>
+									{# Only show one production when not hovered #}
+									<label>{{product.quantityInStock}}
+										available
+									</label>
+								</div>
+							<button type="submit">Add</button>
+						</form>
+					</div>
+					<div class="card-when-available">
+						<label>Unavailable for now:(</label>
+						<br>
+						<label class="card-price">${{product.Price}}</label>
+						<br>
+						{# Only show one production when not hovered #}
+						{% for production in product.productions[:1] %}
+							<label>
+								{{production.productNumber}}
+								available in
+								{{production.productTimeStamp}}
+								min</label>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+<div id="myModal" class="modal"></div>{% endblock %}

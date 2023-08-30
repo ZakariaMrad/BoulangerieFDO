@@ -1,0 +1,78 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+	<link href="{{ asset('/css/page.css') }}" rel="stylesheet" type="text/css"/>
+
+
+	<div class="page-container">
+		<div class="page-card">
+			<h2 class="page-card-title">Ceci est un site pédagogique</h2>
+			<div class="page-card-body">
+
+				<div class="element">
+					<h2>Site pédagogique</h2>
+					<p>Ceci est un site pédagogique pour le cours "Développement WEB" du cégep de Saint-Jérôme!</p>
+				</div>
+				<div class="element">
+					<h2>Educational site</h2>
+					<p>This is an educational site for the "WEB Development" course at Cégep de Saint-Jérôme!</p>
+				</div>
+			</div>
+		</div>
+		<div class="page-card">
+			<h2 class="page-card-title">Contact us</h2>
+			<div class="page-card-body">
+
+				<div class="element">
+					<h2>Phone numbers</h2>
+					<p>
+						(450) 449-1919</p>
+					<p>
+						(514) 994-9191</p>
+				</div>
+				<div class="element">
+					<h2>Emails</h2>
+					<p>BakeryFDO@gmail.com</p>
+					<p>JobsBakeryFDO@gmail.com</p>
+				</div>
+				<div class="element">
+					<h2>Our adress</h2>
+					<p>455 Fournier street, Saint-Jérôme (Québec) J7Y 4V2</p>
+				</div>
+			</div>
+		</div>
+		<div class="page-card">
+			<h2 class="page-card-title">Our history</h2>
+			<div class="page-card-body">
+				<div class="element">
+					<h2>Lebanon</h2>
+					<img src="{{ asset_if('images/contact/flag_lebanon.png', 'images/Unavailable.png') }}" alt="card image">
+					<p>
+						Welcome to our Lebanese bakery! We are proud to offer you a selection of fresh breads and traditional pastries that capture the essence of Lebanese cuisine.
+					</p>
+				</div>
+				<div class="element">
+					<h2>An ancient tradition</h2>
+					<img src="{{ asset_if('images/contact/manaish.jpg', 'images/Unavailable.png') }}" alt="card image">
+					<p>
+						Baking in Lebanon is an ancient tradition that dates back centuries. We have taken this tradition to heart by adding our own personal touch to our products. Our man'oushé flatbread, garnished with za'atar, a mixture of herbs and spices, is a true delicacy for lovers of Lebanese cuisine.
+					</p>
+				</div>
+				<div class="element">
+					<h2>Pride in our cuisine</h2>
+					<img src="{{ asset_if('images/contact/baklava.jpg', 'images/Unavailable.png') }}" alt="card image">
+					<p>
+						We are also proud of our syrup-based pastries, which are classic desserts of the Lebanese cuisine. Our baklava, maamouls and Qatayefs are handmade with the finest ingredients for authentic flavor.
+					</p>
+				</div>
+				<div class="element">
+					<h2>We use fresh ingredients</h2>
+					<img src="{{ asset_if('images/contact/fresh_ingredients.jpg', 'images/Unavailable.png') }}" alt="card image">
+					<p>
+						Everything is fresh and prepared with care every day. We use quality herbs and spices to give our products a unique and delicious flavor. We are confident that our Lebanese bakery will provide you with a memorable taste experience and we hope that you will enjoy our products as much as we enjoy making them.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
